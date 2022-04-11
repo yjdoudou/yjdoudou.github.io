@@ -1,0 +1,329 @@
+<!-- build time:Mon Apr 11 2022 15:33:26 GMT+0800 (GMT+08:00) --><!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="hadoop，大数据,"><meta name="description" content="概述1.1、Hadoop优点高可靠性：Hadoop底层维护多个数据副本，即使Hadoop某个计算元素或存储出现故障也不会导致数据的流失。高扩展性：在集群分配任务数据，可方便地扩展节点。高效性：在MapReduce的思想下，Hadoop是并行工作的，加快任务处理速度高容错性：能够自动将失败的任务重新分配1.2、Hadoop3.x组成Hadoop3.x组成和2.x没有区别，内置组件分别有MapRedu"><meta property="og:type" content="article"><meta property="og:title" content="hadoop3.x学习教程 (一)"><meta property="og:url" content="https://yjdoudou.github.io/2022/04/11/21104/index.html"><meta property="og:site_name" content="流水的博客"><meta property="og:description" content="概述1.1、Hadoop优点高可靠性：Hadoop底层维护多个数据副本，即使Hadoop某个计算元素或存储出现故障也不会导致数据的流失。高扩展性：在集群分配任务数据，可方便地扩展节点。高效性：在MapReduce的思想下，Hadoop是并行工作的，加快任务处理速度高容错性：能够自动将失败的任务重新分配1.2、Hadoop3.x组成Hadoop3.x组成和2.x没有区别，内置组件分别有MapRedu"><meta property="og:locale" content="zh"><meta property="article:published_time" content="2022-04-11T03:10:01.000Z"><meta property="article:modified_time" content="2022-04-11T07:32:59.906Z"><meta property="article:author" content="流水"><meta property="article:tag" content="hadoop，大数据"><meta name="twitter:card" content="summary"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!0,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"Author"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="https://yjdoudou.github.io/2022/04/11/21104/"><title>hadoop3.x学习教程 (一) | 流水的博客</title><meta name="generator" content="Hexo 4.2.1"></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">流水的博客</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">知行合一</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-标签"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>关于</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>Search</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://yjdoudou.github.io/2022/04/11/21104/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="流水"><meta itemprop="description" content=""><meta itemprop="image" content="/images/head.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="流水的博客"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">hadoop3.x学习教程 (一)</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-04-11T11:10:01+08:00">2022-04-11 </time><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i> </span><span class="post-meta-item-text">Post modified&#58;</span> <time title="Post modified" itemprop="dateModified" datetime="2022-04-11T15:32:59+08:00">2022-04-11 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">In</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2022/04/11/21104/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2022/04/11/21104/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="1-1、Hadoop优点"><a href="#1-1、Hadoop优点" class="headerlink" title="1.1、Hadoop优点"></a>1.1、Hadoop优点</h2><ul><li>高可靠性：Hadoop底层维护多个数据副本，即使Hadoop某个计算元素或存储出现故障也不会导致数据的流失。</li><li>高扩展性：在集群分配任务数据，可方便地扩展节点。</li><li>高效性：在MapReduce的思想下，Hadoop是并行工作的，加快任务处理速度</li><li>高容错性：能够自动将失败的任务重新分配</li></ul><h2 id="1-2、Hadoop3-x组成"><a href="#1-2、Hadoop3-x组成" class="headerlink" title="1.2、Hadoop3.x组成"></a>1.2、Hadoop3.x组成</h2><ul><li>Hadoop3.x组成和2.x没有区别，内置组件分别有MapReduce（计算），Yarn（资源调度），HDFS（数据存储），Common（辅助工具）四种</li></ul><h2 id="1-3、HDFS架构概述"><a href="#1-3、HDFS架构概述" class="headerlink" title="1.3、HDFS架构概述"></a>1.3、HDFS架构概述</h2><blockquote><p>HDFS（Hadoop Distributed File System），是一个分布式文件系统<br>内置三种组件，NameNode，DataNode，SecondaryNameNode</p></blockquote><ol><li>NameNode（nn）：存储文件的元数据，如文件名，文件目录结构，文件属性（生成时间，副本数，文件权限），以及每个文件的块列表和块所在的DataNode等</li><li>DataNode（dn）：在本地文件系统存储文件块数据，以及块数据的校验和</li><li>SecondaryNameNode（2nn）：每隔一段时间对NameNode元数据备份</li></ol><h2 id="1-3、YARN架构概述"><a href="#1-3、YARN架构概述" class="headerlink" title="1.3、YARN架构概述"></a>1.3、YARN架构概述</h2><blockquote><p>YARN（Yet Another Resource Negotiator），是Hadoop的资源管理器<br>内置四种组件，ResourceManager（RM），NodeManager（NM），ApplicationMaster（AM），Container</p></blockquote><ol><li>ResourceManager：集群的领导者</li><li>NodeManager：单个节点的领导者</li><li>ApplicationMaster：单个任务运行的老大</li><li>Container：容器，相当一台独立的服务器，里面封装了任务运行所需要的资源</li><li>客户端可以有多个，集群上可以运行多个ApplicationMaster，每个NodeManager上可以有多个Container</li></ol><h2 id="1-4、MapReduce架构概述"><a href="#1-4、MapReduce架构概述" class="headerlink" title="1.4、MapReduce架构概述"></a>1.4、MapReduce架构概述</h2><blockquote><p>MapReduce将计算过程分为两个阶段：Map和Reduce</p></blockquote><ol><li>Map阶段并行处理输入数据</li><li>Reduce阶段对Map结果进行汇总</li></ol><h2 id="1-5、HDFS、YARN、MapReduce三者关系"><a href="#1-5、HDFS、YARN、MapReduce三者关系" class="headerlink" title="1.5、HDFS、YARN、MapReduce三者关系"></a>1.5、HDFS、YARN、MapReduce三者关系</h2><ol><li>client向集群提交一个任务</li><li>client提交完任务后，YARN中的ResourceManager寻找节点，开启一个Container，然后把任务放到Container中，任务叫AppMstr，AppMstr向ResourceManager申请任务开启所需资源。ResourceManager寻找那些节点有资源，AppMstr开启MapTask，每一个MapTask独立运行，最终把结果汇总写入HDFS上</li></ol><h1 id="2、Hadoop运行环境搭建"><a href="#2、Hadoop运行环境搭建" class="headerlink" title="2、Hadoop运行环境搭建"></a>2、Hadoop运行环境搭建</h1><h2 id="2-1、修改虚拟机IP地址"><a href="#2-1、修改虚拟机IP地址" class="headerlink" title="2.1、修改虚拟机IP地址"></a>2.1、修改虚拟机IP地址</h2><ol><li>修改网络IP地址为静态地址，避免变化，方便节点服务器间的相互通信</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</span><br></pre></td></tr></table></figure><ol start="2"><li>修改下列值</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">TYPE&#x3D;&quot;Ethernet&quot;    #网络类型（通常是Ethemet）</span><br><span class="line">PROXY_METHOD&#x3D;&quot;none&quot;</span><br><span class="line">BROWSER_ONLY&#x3D;&quot;no&quot;</span><br><span class="line">BOOTPROTO&#x3D;&quot;static&quot;   #IP的配置方法[none|static|bootp|dhcp]（引导时不使用协议|静态分配IP|BOOTP协议|DHCP协议）</span><br><span class="line">DEFROUTE&#x3D;&quot;yes&quot;</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;&quot;no&quot;</span><br><span class="line">IPV6INIT&#x3D;&quot;yes&quot;</span><br><span class="line">IPV6_AUTOCONF&#x3D;&quot;yes&quot;</span><br><span class="line">IPV6_DEFROUTE&#x3D;&quot;yes&quot;</span><br><span class="line">IPV6_FAILURE_FATAL&#x3D;&quot;no&quot;</span><br><span class="line">IPV6_ADDR_GEN_MODE&#x3D;&quot;stable-privacy&quot;</span><br><span class="line">NAME&#x3D;&quot;ens33&quot;   </span><br><span class="line">UUID&#x3D;&quot;e83804c1-3257-4584-81bb-660665ac22f6&quot;   #随机id</span><br><span class="line">DEVICE&#x3D;&quot;ens33&quot;   #接口名（设备,网卡）</span><br><span class="line">ONBOOT&#x3D;&quot;yes&quot;   #系统启动的时候网络接口是否有效（yes&#x2F;no）</span><br><span class="line">#IP地址</span><br><span class="line">IPADDR&#x3D;192.168.10.100  </span><br><span class="line">#网关  </span><br><span class="line">GATEWAY&#x3D;192.168.10.2      </span><br><span class="line">#域名解析器</span><br><span class="line">DNS1&#x3D;192.168.10.2</span><br></pre></td></tr></table></figure><ol start="3"><li>修改完成后保存退出，并重启网络服务</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure><ol start="4"><li>重启完成后ifconfig查询当前IP是否修改成功</li><li>保证Linux系统ifcfg-ens33文件中IP地址、虚拟网络编辑器地址和Windows系统VM8网络IP地址相同</li></ol><h2 id="2-2、配置虚拟机"><a href="#2-2、配置虚拟机" class="headerlink" title="2.2、配置虚拟机"></a>2.2、配置虚拟机</h2><ol><li>修改主机名称</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hostname</span><br><span class="line">hadoop100</span><br></pre></td></tr></table></figure><ol start="2"><li>配置linux克隆主机名称映射hosts文件，打开/etc/hosts并添加节点的ip及主机名,然后重启</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hosts</span><br><span class="line">192.168.10.100 hadoop100</span><br><span class="line">192.168.10.101 hadoop101</span><br><span class="line">192.168.10.102 hadoop102</span><br></pre></td></tr></table></figure><ol start="3"><li>修改windows的主机映射文件（hosts文件）</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#进入C:\Windows\System32\drivers\etc路径</span><br><span class="line">#打开hosts文件并添加如下内容，然后保存</span><br><span class="line">192.168.10.100 hadoop100</span><br><span class="line">192.168.10.101 hadoop101</span><br><span class="line">192.168.10.102 hadoop102</span><br></pre></td></tr></table></figure><ol start="4"><li>测试hadoop100虚拟机是否可以链接网络</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure><ol start="5"><li>安装epel-release</li></ol><blockquote><p>Extra Packages for Enterprise<br>Linux是为”红帽系”的操作系统提供额外的软件包，适用于RHEL、CentOS和Scientific<br>Linux。相当于是一个软件仓库，大多数rpm包在官方 repository 中是找不到的</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#安装epel-release</span><br><span class="line">yum install -y epel-release</span><br><span class="line">#工具包集合</span><br><span class="line">yum install -y net-tools</span><br><span class="line">#vim：编辑器</span><br><span class="line">yum install -y vim</span><br><span class="line"></span><br><span class="line">#关闭防火墙</span><br><span class="line">systemctl stop firewalld</span><br><span class="line">#关闭防火墙开机自启</span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure><ol start="6"><li>创建hadoop用户，并修改hadoop用户的密码</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#在root用户下</span><br><span class="line">useradd hadoop</span><br><span class="line">passwd hadoop</span><br></pre></td></tr></table></figure><ol start="7"><li>配置hadoop用户具有root权限，方便后期加sudo执行root权限的命令</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#在root用户下</span><br><span class="line">vim &#x2F;etc&#x2F;sudoers</span><br><span class="line"></span><br><span class="line">#在%wheel下一行添加</span><br><span class="line">## Allows people in group wheel to run all commands</span><br><span class="line">%wheel  ALL&#x3D;(ALL)       ALL</span><br><span class="line">#这行</span><br><span class="line">hadoop   ALL&#x3D;(ALL)     NOPASSWD:ALL</span><br><span class="line">#hadoop这一行不要直接放到root行下面，因为所有用户都属于wheel组，你先配置了hadoop具有免密功能，但是程序执行到%wheel行时，该功能又被覆盖回需要密码。所以hadoop要放到%wheel这行下面。</span><br></pre></td></tr></table></figure><ol start="8"><li>在/opt目录下创建文件夹，并修改所属主和所属组</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;opt&#x2F;module</span><br><span class="line">mkdir &#x2F;opt&#x2F;software</span><br><span class="line">#修改module、software文件夹的所有者和所属组均为hadoop用户</span><br><span class="line">chown hadoop:hadoop &#x2F;opt&#x2F;module</span><br><span class="line">chown hadoop:hadoop &#x2F;opt&#x2F;software</span><br><span class="line">#查看module、software文件夹的所有者和所属组</span><br><span class="line">cd &#x2F;opt&#x2F;</span><br><span class="line">ll</span><br></pre></td></tr></table></figure><ol start="9"><li>卸载虚拟机自带的JDK</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep -i java | xargs -n1 rpm -e --nodeps</span><br></pre></td></tr></table></figure><h2 id="2-3、安装jdk，hadoop"><a href="#2-3、安装jdk，hadoop" class="headerlink" title="2.3、安装jdk，hadoop"></a>2.3、安装jdk，hadoop</h2><ol><li>进入hadoop用户</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls &#x2F;opt&#x2F;software&#x2F;</span><br></pre></td></tr></table></figure><ol start="2"><li>用XShell传输工具将JDK，Hadoop导入到opt目录下面的software文件夹下面</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#hadoop下载地址</span><br><span class="line">https:&#x2F;&#x2F;archive.apache.org&#x2F;dist&#x2F;hadoop&#x2F;common&#x2F;</span><br></pre></td></tr></table></figure><ol start="3"><li>在Linux系统下的opt目录中查看软件包是否导入成功</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop100 ~]$ ls &#x2F;opt&#x2F;software&#x2F;</span><br></pre></td></tr></table></figure><ol start="4"><li>解压JDK，Hadoop到/opt/module目录下</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop100 software]$ tar -zxvf jdk-8u212-linux-x64.tar.gz -C &#x2F;opt&#x2F;module&#x2F;</span><br><span class="line">[hadoop@hadoop100 software]$ tar -zxvf hadoop-3.1.3.tar.gz -C &#x2F;opt&#x2F;module&#x2F;</span><br></pre></td></tr></table></figure><ol start="5"><li>配置JDK,Hadoop环境变量</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;profile.d&#x2F;my_env.sh</span><br><span class="line">#JAVA_HOME</span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;jdk1.8.0_212</span><br><span class="line">export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin</span><br><span class="line">#HADOOP_HOME</span><br><span class="line">export HADOOP_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;hadoop-3.1.3</span><br><span class="line">export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;bin</span><br><span class="line">export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;sbin</span><br><span class="line">#注意安装路径路径一定要对</span><br><span class="line">#保存后更新下环境变量</span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure><ol start="6"><li>测试JDK,Hadoop是否安装成功</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">hadoop version</span><br><span class="line">#如果出现版本号则安装成功</span><br></pre></td></tr></table></figure><ol start="7"><li>用hadoop100为模板，克隆两份，并修改IP地址和主机名</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#修改主机名</span><br><span class="line">vim &#x2F;etc&#x2F;hostname</span><br><span class="line">#hadoop101</span><br><span class="line">#hadoop102</span><br><span class="line"></span><br><span class="line">#修改IP地址</span><br><span class="line">vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</span><br><span class="line">#仅修改IP_ADDR</span><br><span class="line">#IPADDR&#x3D;192.168.10.101  </span><br><span class="line">#IPADDR&#x3D;192.168.10.102</span><br></pre></td></tr></table></figure><ol start="8"><li>hadoop重要目录</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#（1）bin目录：存放对Hadoop相关服务（hdfs，yarn，mapred）进行操作的脚本</span><br><span class="line">#（2）etc目录：Hadoop的配置文件目录，存放Hadoop的配置文件</span><br><span class="line">#（3）lib目录：存放Hadoop的本地库（对数据进行压缩解压缩功能）</span><br><span class="line">#（4）sbin目录：存放启动或停止Hadoop相关服务的脚本</span><br><span class="line">#（5）share目录：存放Hadoop的依赖jar包、文档、和官方案例</span><br><span class="line">#进入Hadoop文件，ll看一下用户组是否属于hadoop，如果不是请重新反汇root用户执行用户组变更</span><br></pre></td></tr></table></figure><h1 id="3、hadoop运行模式"><a href="#3、hadoop运行模式" class="headerlink" title="3、hadoop运行模式"></a>3、hadoop运行模式</h1><blockquote><p>Hadoop运行模式包括：本地模式、伪分布式模式以及完全分布式模式。</p></blockquote><ol><li>本地模式：单机运行，只是用来演示一下官方案例。生产环境不用。</li><li>伪分布式模式：也是单机运行，但是具备Hadoop集群的所有功能，一台服务器模拟一个分布式的环境。个别缺钱的公司用来测试，生产环境不用。</li><li>完全分布式模式：多台服务器组成分布式环境。生产环境使用。</li></ol><h2 id="3-1、本地运行模式（官方WordCount）"><a href="#3-1、本地运行模式（官方WordCount）" class="headerlink" title="3.1、本地运行模式（官方WordCount）"></a>3.1、本地运行模式（官方WordCount）</h2><ol><li>编辑word.txt文件</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop100 wcinput]$ vim word.txt</span><br><span class="line">#在文件中输入如下内容</span><br><span class="line">hadoop yarn</span><br><span class="line">hadoop mapreduce</span><br><span class="line">hadoop</span><br><span class="line">hadoop</span><br><span class="line">#保存退出</span><br></pre></td></tr></table></figure><ol start="2"><li>执行程序</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar &#x2F;opt&#x2F;module&#x2F;hadoop-3.1.3&#x2F;share&#x2F;hadoop&#x2F;mapreduce&#x2F;hadoop-mapreduce-examples-3.1.3.jar wordcount word.txt out</span><br></pre></td></tr></table></figure><ol start="3"><li>查看结果</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat out&#x2F;part-r-00000</span><br><span class="line">hadoop 2</span><br><span class="line">hadoop  2</span><br><span class="line">mapreduce       1</span><br><span class="line">yarn    1</span><br></pre></td></tr></table></figure><p>文章转自<a href="https://blog.csdn.net/shenBaoYun/article/details/122918079，学习用，如有侵权，请联系本人删除" target="_blank" rel="noopener">https://blog.csdn.net/shenBaoYun/article/details/122918079，学习用，如有侵权，请联系本人删除</a></p></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author:</strong> 流水</li><li class="post-copyright-link"><strong>Post link:</strong> <a href="https://yjdoudou.github.io/2022/04/11/21104/" title="hadoop3.x学习教程 (一)">https://yjdoudou.github.io/2022/04/11/21104/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/hadoop%EF%BC%8C%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag"># hadoop，大数据</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2022/02/16/23212/" rel="next" title="log4j渗透solr"><i class="fa fa-chevron-left"></i> log4j渗透solr</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2022/04/11/4551/" rel="prev" title="Hadoop3.x学习教程（二）">Hadoop3.x学习教程（二） <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">Table of Contents</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">Overview</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="流水"><p class="site-author-name" itemprop="name">流水</p><p class="site-description motion-element" itemprop="description">衣带渐宽终不悔<br>为伊消得人憔悴</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">24</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">14</span> <span class="site-state-item-name">categories</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">19</span> <span class="site-state-item-name">tags</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://www.cnblogs.com/yjdoudou" target="_blank" title="博客园"><i class="fa fa-fw fa-github"></i>博客园</a> </span><span class="links-of-author-item"><a href="mailto:1769072244@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1、Hadoop优点"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、Hadoop优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2、Hadoop3-x组成"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Hadoop3.x组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3、HDFS架构概述"><span class="nav-number">1.3.</span> <span class="nav-text">1.3、HDFS架构概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3、YARN架构概述"><span class="nav-number">1.4.</span> <span class="nav-text">1.3、YARN架构概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4、MapReduce架构概述"><span class="nav-number">1.5.</span> <span class="nav-text">1.4、MapReduce架构概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5、HDFS、YARN、MapReduce三者关系"><span class="nav-number">1.6.</span> <span class="nav-text">1.5、HDFS、YARN、MapReduce三者关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、Hadoop运行环境搭建"><span class="nav-number">2.</span> <span class="nav-text">2、Hadoop运行环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1、修改虚拟机IP地址"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、修改虚拟机IP地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2、配置虚拟机"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、配置虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3、安装jdk，hadoop"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、安装jdk，hadoop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、hadoop运行模式"><span class="nav-number">3.</span> <span class="nav-text">3、hadoop运行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1、本地运行模式（官方WordCount）"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、本地运行模式（官方WordCount）</span></a></li></ol></li></ol></div></div></section><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2020 &mdash; <span itemprop="copyrightYear">2022</span> <span class="with-love"><i class="fa fa-[object Object]"></i> </span><span class="author" itemprop="copyrightHolder">流水</span></div><div class="busuanzi-count"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv">你是来访的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴</span></div></div></footer></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script type="text/javascript">var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'M9ucAtVAq5dTwQEePYAFMiNm-gzGzoHsz',
+        appKey: 'tOVH9XTcixGijCwoxcES18EN',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });</script><script type="text/javascript">// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });</script></body></html><!-- rebuild by neat -->
